@@ -105,7 +105,7 @@ function init() {
 // call the function that will generate the HTML and pass in the results from inquirer
 function writeToFile(fileName, data) {
     // this passes the data object (the answers from the inquirer prompt) to the function to generate the markdown file
-    fs.writeFile(`./public/${fileName}.html`, generateHTML(data), (err) =>
+    fs.writeFile(`./dist/${fileName}.html`, generateHTML(data), (err) =>
     err ? console.error(err) : console.log("HTML File has been generated.")
     );
 }
