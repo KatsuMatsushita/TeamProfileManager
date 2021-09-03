@@ -17,6 +17,7 @@ function generateHTML (employees) {
   var employeeObj; 
   // roleIcon will hold the HTML for the icon representing the role
   let roleIcon = ``;
+  // special contains the role-specific information
   let special = ``;
 
   switch(element.employeeType) {
@@ -39,7 +40,7 @@ function generateHTML (employees) {
       special = `School: ${employeeObj.getSchool()}`;
       break;
     default:
-      // code block
+      // default to break out and not do anything.
   };
 
   makeCards(employeeObj, roleIcon, special);

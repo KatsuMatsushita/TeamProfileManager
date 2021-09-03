@@ -13,7 +13,7 @@ const generateHTML = require("./src/generateHTML");
 
 // an array of questions that will be asked of the user to populate the object
 /*
-question 1: What type of Employee? use a list and choose Manager, Engineer, Intern
+question 1: What type of Employee? use a list and choose Engineer, Intern
 question 2: Name?
 question 3: ID?
 question 4: email? include some kind of validation
@@ -57,7 +57,6 @@ const question = [
     },
     {
         when () {
-            //return answers.employeeType == "Manager";
             return firstTime;
         },
         name: "employeeOffice",
@@ -87,8 +86,6 @@ const question = [
     }
 ];
 
-//const questions = [];
-
 // this array contains all of the answer objects from however many loops of the inquirer prompt
 const output = [];
 
@@ -98,13 +95,12 @@ function init() {
     inquirer.prompt(question)
     .then((answer) => {
         if(firstTime){
+            // this checks to see if this is the first time that the prompt has run, and therefore the employeeType should be Manager
             answer.employeeType = "Manager"
             firstTime = false;
         }
         // push the answer (all data needed for 1 employee) into the output array
         output.push(answer);
-        
-        // use a nested prompt to 
         // this loops the prompt if askAgain is true; example used from https://github.com/SBoudrias/Inquirer.js/blob/master/packages/inquirer/examples/recursive.js
         if (answer.askAgain) {
             init();
