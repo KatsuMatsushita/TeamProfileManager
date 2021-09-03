@@ -30,6 +30,9 @@ The HTML webpage uses Bootstrap, FontAwesome, and an application-specific CSS fi
 5. this will generate an index.html file in the /dist folder
 6. open the index.html file in the browser of your choice
 
+## Usage Video
+https://drive.google.com/file/d/1ieqf2PpKLtUVHe22qx2EQVccSZYJsTL0/view
+
 ## Test Instructions <a name="test"></a>
 1. Open Gitbash, and navigate to the folder where the project has been cloned
 2. run the command "npm test"
