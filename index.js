@@ -20,12 +20,21 @@ question 4: email? include some kind of validation
 question 5: depending on answer to Q1, enter office, github, or school; use the when property on each question so that the if returns true for the associated role. inquirer stores the responses in an object called answers
 question 6: Do you want to enter another? type: confirm, name: askAgain; this loops the prompts
 */
+let firstTime = true;
 const question = [
-    {
+    {   
+        when (){
+            return !firstTime;
+        },
         name: "employeeType",
         message: "Please choose the type of Employee:",
         type: "list",
-        choices: ["Manager", "Engineer", "Intern"]
+        choices: ["Engineer", "Intern"]
+    },
+    {
+        name: "employeeName",
+        message: "Please enter the employee's name:",
+        type: "input"
     },
     {
         name: "employeeName",
@@ -47,8 +56,9 @@ const question = [
         }
     },
     {
-        when (answers) {
-            return answers.employeeType == "Manager";
+        when () {
+            //return answers.employeeType == "Manager";
+            return firstTime;
         },
         name: "employeeOffice",
         message: "Please enter the manager's office:",
@@ -72,7 +82,7 @@ const question = [
     },
     {
         name: "askAgain",
-        message: "Would you like to enter another employee's information? Y/N",
+        message: "Would you like to enter another employee's information?",
         type: "confirm"
     }
 ];
@@ -87,10 +97,13 @@ function init() {
     // start inquirer prompts to get answers from the user
     inquirer.prompt(question)
     .then((answer) => {
+        if(firstTime){
+            answer.employeeType = "Manager"
+            firstTime = false;
+        }
         // push the answer (all data needed for 1 employee) into the output array
-        
         output.push(answer);
-
+        
         // use a nested prompt to 
         // this loops the prompt if askAgain is true; example used from https://github.com/SBoudrias/Inquirer.js/blob/master/packages/inquirer/examples/recursive.js
         if (answer.askAgain) {
